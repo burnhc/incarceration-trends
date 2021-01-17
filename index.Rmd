@@ -1,0 +1,45 @@
+---
+title: "Assignment 3: Incarceration"
+subtitle: "Chandra Burnham"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+source("analysis.R")
+library("knitr")
+```
+#### Part I. Introduction
+For this assignment, we have been asked to analyze the [Incarceration Trends dataset](https://github.com/vera-institute/incarceration-trends) from Vera Institute, which was first released in 2015 and last revised as of September 2020. This dataset contains statistics about jail and prison populations and rates by demographic, which was collected or estimated from counties in the United States over time. My analysis will compare the prison rates of races versus time or their proportions of the total population in order to understand how different racial groups are being affected by our justice system. I chose to focus specifically on prison rates since imprisonment is more severe and long-term than jail.
+
+##### Dataset summary
+1. There are `r num_features` different features in this dataset and `r num_elements` in total.
+2. The years range from `r range_years[1]` to `r range_years[2]`, spanning `r diff_years` years.
+3. A total of `r num_counties` counties are represented in this dataset.
+4. There are 5 different racial groups represented in this dataset (excluding Other): Whites, Blacks, Asians/Pacific Islanders, Latinx, and Natives. Throughout my analysis, I will define 'incarceration rate' as the prison population rate of each demographic. For their `prison_pop_rate` data, Whites range from `r range_prison_rates$white_range[1]` to `r range_prison_rates$white_range[2]`, Blacks range from `r range_prison_rates$black_range[1]` to `r range_prison_rates$black_range[2]`, Asians/Pacific Islanders range from `r range_prison_rates$aapi_range[1]` to `r range_prison_rates$aapi_range[2]`, Latinx range from `r range_prison_rates$latinx_range[1]` to `r range_prison_rates$latinx_range[2]`, and Natives range from `r range_prison_rates$native_range[1]` to `r range_prison_rates$native_range[2]`.
+5. For better accuracy, my analysis only uses data collected from two periods: after the year 2000, and in the year 2016. Roughly `r prop_valid_data_after_2000`% of the dataset after 2000 is non-missing (not N/A), and `r prop_valid_data_in_2016`% of the dataset in 2016 is non-missing.
+
+#### Part II. Trends over time chart
+
+This chart displays the mean incarceration rate per 100,000 between years 2000 and 2018 by racial group, specifically within the state of Washington. I decided to include this comparison because it is important to assess how the prison rate has fluctuated over time and the progress that has been made in our state in mitigating systematic bias in the justice system. From the graph, we can observe that Blacks have had a disproportionately high incarceration rate across time compared to the rest of the racial groups. On the other hand, Asians/Pacific Islander showed a mean incarceration rate of nearly 0 through all the years, suggesting that insufficient data has been collected for this particular group, or that Asians/Pacific Islanders simply exhibit very low incarceration rates in general. In recent years, we can see how the trend of incarceration has declined or remained steady for minority groups, whereas the incarceration rate has slightly increased for Whites and exceeded Latinx incarceration rates by the year 2008.
+
+```{r echo = FALSE, fig.align = 'center', message = FALSE}
+part2
+```
+
+#### Part III. Variable comparison chart
+
+These charts compare the proportion of the county population (ages 15-64) with the incarceration rate per 100,000 in 2016 by racial group. I decided to include this comparison to visualize the skew of distributions of racial populations with respect to their incarceration rates. The first chart combines the 5 scatterplots that are faceted in the second chart to make it easier for relative comparisons. Note that all of the charts have a logarithmic scale in the y-axis to reduce the visual distortion caused by outliers. We can observe that Blacks, Latinx, and Natives are clustered at the upper-left side of the distribution, the Asians/Pacific Islanders are toward the lower-left, and the Whites are at the middle-right. This means that, whereas these groups tend to make up a small percentage of the total population, they still show disproportionately high rates of incarceration; even with an even percentage of these minority groups and whites, the distribution is slightly higher for them than that of whites. The only group that does not quite follow this trend is the Asian/Pacific Islanders, which show low proportions of the total population in general but have much lower incarceration rates at the same time (which is the trend that we ideally would observe for the rest of the minority groups).
+
+```{r echo = FALSE, fig.align = 'center', message = FALSE}
+part3a
+part3b
+```
+
+#### Part IV. Map
+
+This map compares the median difference in Black and White incarceration rates for each state in 2016 (subtracting Black incarceration rate by White incarceration rate). I decided to include this comparison to visualize how the discrepancy in Black and White incarceration varies geographically. I chose to use the median rather than the mean in this chart to minimize the effect of outlier county data. Each state is colored on a spectrum from purple (lowest median difference) to yellow (highest median difference), but states without data are shaded in gray. In general, we can observe that most of the northwestern states show low differences between the two incarceration rates, whereas the mid-west and eastern states have greater differences. The state with the highest median difference is Utah, showing a median difference of over 3,000 Blacks incarcerated over Whites per 100,000. This is disturbing because according to 2016 U.S. census data, Blacks only represent about 1% of the population there whereas Whites make up nearly 80% of their population. Furthermore, we can also see that there are no negative differences present in this map, which implies that no state in 2016 had a higher incarceration rate for Whites than Blacks even when Whites make up the majority in every state.
+
+```{r echo = FALSE, fig.align = 'center', message = FALSE}
+part4
+```
