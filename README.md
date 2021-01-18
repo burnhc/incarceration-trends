@@ -1,4 +1,4 @@
-# incarceration-trends
-Data analysis report of incarceration trends.
+# Incarceration Trends Data Analysis Report
+Static data analysis and graph visualizations of incarceration trends using various R libraries.
 
-Access it here: https://burnhc.github.io/incarceration-trends/
+Deployed at: https://burnhc.github.io/incarceration-trends/
