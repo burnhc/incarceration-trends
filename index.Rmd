@@ -1,5 +1,5 @@
 ---
-title: "Assignment 3: Incarceration"
+title: "Incarceration Trends in the United States"
 subtitle: "Chandra Burnham"
 output: html_document
 ---
@@ -10,7 +10,7 @@ source("analysis.R")
 library("knitr")
 ```
 #### Part I. Introduction
-For this assignment, we have been asked to analyze the [Incarceration Trends dataset](https://github.com/vera-institute/incarceration-trends) from Vera Institute, which was first released in 2015 and last revised as of September 2020. This dataset contains statistics about jail and prison populations and rates by demographic, which was collected or estimated from counties in the United States over time. My analysis will compare the prison rates of races versus time or their proportions of the total population in order to understand how different racial groups are being affected by our justice system. I chose to focus specifically on prison rates since imprisonment is more severe and long-term than jail.
+This is an analysis of the [Incarceration Trends dataset](https://github.com/vera-institute/incarceration-trends) from Vera Institute, which was first released in 2015 and last revised as of September 2020. This dataset contains statistics about jail and prison populations and rates by demographic, which was collected or estimated from counties in the United States over time. My analysis will compare the prison rates of races versus time or their proportions of the total population in order to understand how different racial groups are being affected by our justice system. I chose to focus specifically on prison rates since imprisonment is more severe and long-term than jail.
 
 ##### Dataset summary
 1. There are `r num_features` different features in this dataset and `r num_elements` in total.
